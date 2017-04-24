@@ -1,0 +1,110 @@
+<div class="row">
+  <div class="col-lg-offset-2 col-lg-8 jumbotron text-center">
+    <h3>Playing board</h3>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-5">
+    <div class="row form-group">
+      <div class="col-md-offset-2 col-md-2 text-right">
+        <img class="icon" src="../../../assets/images/player1.png">
+        <!--
+        <span *ngFor="let weapon of player1Weapons; let i=index">
+          <template [ngIf]="i==0">{{weapon.name}}</template>
+          <template [ngIf]="i > 0">- {{weapon.name}}</template>
+        </span>
+        -->
+      </div>
+      <div class="col-md-2 text-right">
+        <label>Player 1</label>
+      </div>
+      <div *ngIf="!gameOn" class="col-md-4">
+        <select class="form-control" name="heroes" id="heroes1" [(ngModel)]="player1Id">
+          <option *ngFor="let hero of heroes" [value]="hero.id">{{hero.name}}</option>
+        </select>
+      </div>
+      <div *ngIf="gameOn" class="col-md-2">
+        {{player1.name}}
+      </div>
+    </div>
+    <div class="row form-group">
+      <div class="col-md-offset-2 col-md-2 text-right">
+        <img class="icon" src="../../../assets/images/player2.png">
+      </div>
+      <div class="col-md-2 text-right">
+        <label>Player 2</label>
+      </div>
+      <div *ngIf="!gameOn" class="col-md-4">
+        <select class="form-control" name="heroes" id="heroes2" [(ngModel)]="player2Id">
+          <option *ngFor="let hero of heroes" [value]="hero.id">{{hero.name}}</option>
+        </select>
+      </div>
+      <div *ngIf="gameOn" class="col-md-2">
+        {{player2.name}}
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-offset-3">
+        <button class="btn btn-default" [disabled]="!playerOneSelected || !playerTwoSelected || gameOn || !callBackFinished"  (click)="startGame()">Start game</button>
+        <button class="btn btn-default" [disabled]="!gameOn" (click)="endGame()">End game</button>
+      </div>
+    </div>
+    <div *ngIf="gameOn" class="row panel-game">
+      <div class="col-lg-offset-1 col-lg-10">
+        <div class="panel panel-default">
+          <div class="panel-body">
+            <ul class="list-group">
+              <li class="list-group-item">Joueur 1 : {{player1.name}}</li>
+              <li class="list-group-item">Points de vie : {{player1Pv}}</li>
+            </ul>
+            <ul class="list-group">
+              <li class="list-group-item">Joueur 2 : {{player2.name}}</li>
+              <li class="list-group-item">Points de vie : {{player2Pv}}</li>
+            </ul>
+            <div class="has-error">
+              <span class="help-block message-attaque">
+                {{messageAttaque}} <br />
+                {{messageResultatAttaque}}
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--
+    <div class="row">
+      {{ player1 | json }}
+      {{ player2 | json }}
+      {{ playerOneSelected }}
+      {{ playerTwoSelected }}
+      {{ gameOn }}
+    </div>
+    -->
+    <!--
+    <div *ngIf="gameOn" class="row">
+      player1Attaque = {{player1Attaque}} <br />
+      player1Esquive = {{player1Esquive}} <br />
+      player1Degats = {{player1Degats}} <br />
+
+      player2Attaque = {{player2Attaque}} <br />
+      player2Esquive = {{player2Esquive}} <br />
+      player2Degats = {{player2Degats}} <br />
+    </div>
+    -->
+  </div>
+  <div class="col-md-6">
+    <table id="playingBoard" class="table table-bordered">
+    <tr class="row" *ngFor="let yCoordinate of [1,2,3,4,5,6]">
+      <td class="col-md-2"
+          *ngFor="let xCoordinate of [1,2,3,4,5,6]"
+          [ngClass]="cellClasses[yCoordinate-1][xCoordinate-1]"
+          (click)="movePlayer(xCoordinate, yCoordinate)">
+        <div [ngSwitch]="cellValues[yCoordinate-1][xCoordinate-1]">
+          <img *ngSwitchCase="1" [class.killed]="player2Won" src="../../../assets/images/player1.png"/>
+          <img *ngSwitchCase="2" [class.killed]="player1Won" src="../../../assets/images/player2.png"/>
+        </div>
+      </td>
+    </tr>
+    </table>
+  </div>
+</div>

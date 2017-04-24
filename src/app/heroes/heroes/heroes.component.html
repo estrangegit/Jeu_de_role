@@ -1,0 +1,78 @@
+<div class="row">
+  <div class="col-lg-offset-2 col-lg-8 jumbotron text-center">
+    <h3>Mes héroes</h3>
+  </div>
+</div>
+<div class="row">
+  <div class="col-lg-offset-1 col-lg-3">
+    <ul class="list-group heroes">
+      <li class="list-group-item" *ngFor="let hero of heroes" (click)="onSelect(hero)"
+          [class.selected]="hero === selectedHero">
+        <span *ngIf="sortHeroIdActive" class="badge">{{hero.id}}</span>
+        <span *ngIf="sortHeroNameActive" class="badge">{{hero.id}}</span>
+        <span *ngIf="sortHeroAttaqueActive" class="badge">{{hero.attaque}}</span>
+        <span *ngIf="sortHeroEsquiveActive" class="badge">{{hero.esquive}}</span>
+        <span *ngIf="sortHeroDegatsActive" class="badge">{{hero.degats}}</span>
+        <span *ngIf="sortHeroPvActive" class="badge">{{hero.pv}}</span>
+        <span>{{hero.name}}</span>
+        <button class="delete"
+                (click)="delete(hero); $event.stopPropagation()">x</button>
+      </li>
+    </ul>
+  </div>
+  <div class="col-lg-7">
+    <div id="sortHeroes" class="row">
+      <div class="col-lg-8">
+          <legend>Tri des héroes par critère</legend>
+          <button class="btn btn-default" [ngClass]="currentClassesSortIdButton" (click)="getHeroesSortedById()">id</button>
+          <button class="btn btn-default" [ngClass]="currentClassesSortNameButton" (click)="getHeroesSortedByName()">Nom</button>
+          <button class="btn btn-default" [ngClass]="currentClassesSortAttaqueButton" (click)="getHeroesSortedByAttaque()">Attaque</button>
+          <button class="btn btn-default" [ngClass]="currentClassesSortEsquiveButton" (click)="getHeroesSortedByEsquive()">Esquive</button>
+          <button class="btn btn-default" [ngClass]="currentClassesSortDegatsButton" (click)="getHeroesSortedByDegats()">Degats</button>
+          <button class="btn btn-default" [ngClass]="currentClassesSortPvButton" (click)="getHeroesSortedByPv()">Points de vie</button>
+      </div>
+    </div>
+    <div id="sortMessage" class="row">
+      <div *ngIf="sortHeroIdActive ||
+                  sortHeroNameActive ||
+                  sortHeroAttaqueActive ||
+                  sortHeroEsquiveActive ||
+                  sortHeroDegatsActive ||
+                  sortHeroPvActive" class="col-lg-8">
+        <div [ngClass]="classesSortMessage">
+          {{sortMessage}}
+        </div>
+      </div>
+    </div>
+    <div id="addHeroForm" class="row">
+      <div class="col-lg-8">
+        <form>
+          <legend>Ajouter un héro</legend>
+          <div class="form-group">
+            <div class="col-lg-4">
+              <label>Nom du héro:</label>
+            </div>
+            <div class="col-lg-8">
+              <input class="form-control" #heroName />
+            </div>
+          </div>
+          <button class="btn btn-default" (click)="add(heroName.value); heroName.value=''">
+            Ajouter
+          </button>
+        </form>
+      </div>
+    </div>
+    <div class="row">
+      <div *ngIf="selectedHero">
+        <h2>
+          {{selectedHero.name | uppercase}} est mon héro
+        </h2>
+        <button class="btn btn-default" (click)="gotoDetail()">Voir détails</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+

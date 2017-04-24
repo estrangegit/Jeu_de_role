@@ -1,0 +1,9 @@
+.search-result{
+  cursor: pointer;
+}
+
+.search-result:hover{
+  background-color: #e1e7ea;
+  position: relative;
+  left: -1px;
+}

@@ -1,0 +1,19 @@
+label {
+  color: #607D8B;
+  font-weight: bold;
+}
+input {
+  font-size: 1em;
+}
+
+#errorMessageHero{
+  margin-top: 100px;
+}
+
+.valid{
+  border-left: 5px solid #42A948;
+}
+
+.invalid{
+  border-left: 5px solid #a94442;
+}

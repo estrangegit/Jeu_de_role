@@ -1,0 +1,14 @@
+<div id="weapon-search-component" class="row">
+  <form class="col-lg-offset-1 col-lg-7">
+    <legend>Rechercher une arme</legend>
+    <div class="form-group">
+      <input class="form-control" #searchBox id="search-box" (keyup)="search(searchBox.value)" />
+    </div>
+    <ul class="list-group">
+      <li class="list-group-item search-result" *ngFor="let weapon of weapons | async"
+          (click)="gotoDetail(weapon)">
+        {{weapon.name}}
+      </li>
+    </ul>
+  </form>
+</div>

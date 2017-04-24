@@ -1,0 +1,142 @@
+<div *ngIf="weapon">
+  <div class="row">
+    <div class="col-lg-offset-1 col-lg-5">
+      <legend>{{weapon.name}} détails</legend>
+      <div class="row form-group">
+        <div class="col-lg-5 text-right">
+          <label>id: </label>
+        </div>
+        <div class="col-lg-5">
+          {{weapon.id}}
+        </div>
+      </div>
+      <div class="row form-group">
+        <div class="col-lg-5 text-right">
+          <label for="name">Nom: </label>
+        </div>
+        <div class="col-lg-5">
+          <input id="name" class="form-control"
+                 [ngClass]="nameClasses"
+                 [(ngModel)]="weapon.name" placeholder="Nom"/>
+        </div>
+      </div>
+      <div class="row form-group">
+        <div class="col-lg-5 text-right">
+          <label for="bonusAttaque">Bonus en attaque: </label>
+        </div>
+        <div class="col-lg-5">
+          <input id="bonusAttaque" class="form-control valid"
+                 [ngClass]="bonusAttaqueClasses"
+                 type="number"
+                 [(ngModel)]="weapon.bonusAttaque" placeholder="Bonus en attaque" />
+        </div>
+      </div>
+      <div class="row form-group">
+        <div class="col-lg-5 text-right">
+          <label for="bonusEsquive">Bonus en esquive: </label>
+        </div>
+        <div class="col-lg-5">
+          <input id="bonusEsquive" class="form-control valid"
+                 type="number"
+                 [ngClass]="bonusEsquiveClasses"
+                 [(ngModel)]="weapon.bonusEsquive"
+                 placeholder="Bonus en esquive" />
+        </div>
+      </div>
+      <div class="row form-group">
+        <div class="col-lg-5 text-right">
+          <label for="bonusDegats">Bonus en dégats: </label>
+        </div>
+        <div class="col-lg-5">
+          <input id="bonusDegats" class="form-control valid"
+                 [ngClass]="bonusDegatsClasses"
+                 type="number" [(ngModel)]="weapon.bonusDegats"
+                 placeholder="Bonus en dégats" />
+        </div>
+      </div>
+      <div class="row form-group">
+        <div class="col-lg-5 text-right">
+          <label for="bonusPv">Bonus en points de vie: </label>
+        </div>
+        <div class="col-lg-5">
+          <input id="bonusPv" class="form-control valid"
+                 type="number"
+                 [ngClass]="bonusPvClasses"
+                 [(ngModel)]="weapon.bonusPv"
+                 placeholder="Bonus en points de vie" />
+        </div>
+      </div>
+      <button class="btn btn-default" (click)="save()" [disabled]="!validForm">Sauvegarder</button>
+      <button class="btn btn-default" (click)="goBack()">Retour</button>
+    </div>
+    <div id="errorMessageWeapon" class="col-lg-offset-1 col-lg-5">
+      <div *ngIf="messageName">
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="form-group has-error">
+              <div class="help-block">
+                {{messageName}}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div *ngIf="messageBonusAttaque">
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="form-group has-error">
+              <div class="help-block">
+                {{messageBonusAttaque}}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div *ngIf="messageBonusEsquive">
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="form-group has-error">
+              <div class="help-block">
+                {{messageBonusEsquive}}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div *ngIf="messageBonusDegats">
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="form-group has-error">
+              <div class="help-block">
+                {{messageBonusDegats}}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div *ngIf="messageBonusPv">
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="form-group has-error">
+              <div class="help-block">
+                {{messageBonusPv}}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div *ngIf="messageTotal">
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="form-group has-error">
+              <div class="help-block">
+                {{messageTotal}}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

@@ -1,0 +1,152 @@
+<div *ngIf="hero">
+  <div class="row">
+    <div class="col-lg-offset-1 col-lg-5">
+      <legend>{{hero.name}} détails</legend>
+      <div class="row form-group">
+        <div class="col-lg-4 text-right">
+          <label>id: </label>
+        </div>
+        <div class="col-lg-6">
+          {{hero.id}}
+        </div>
+      </div>
+      <div class="row form-group">
+        <div class="col-lg-4 text-right">
+          <label for="name">Nom: </label>
+        </div>
+        <div class="col-lg-6">
+          <input id="name" class="form-control"
+                 [ngClass]="nameClasses"
+                 [(ngModel)]="hero.name" placeholder="Nom"/>
+         </div>
+      </div>
+      <div class="row form-group">
+        <div class="col-lg-4 text-right">
+          <label for="attaque">Attaque: </label>
+        </div>
+        <div class="col-lg-6">
+          <input id="attaque" class="form-control valid"
+                 [ngClass]="attaqueClasses"
+                 type="number"
+                 [(ngModel)]="hero.attaque" placeholder="Attaque" />
+        </div>
+      </div>
+      <div class="row form-group">
+        <div class="col-lg-4 text-right">
+          <label for="esquive">Esquive: </label>
+        </div>
+        <div class="col-lg-6">
+          <input id="esquive" class="form-control valid"
+                 type="number"
+                 [ngClass]="esquiveClasses"
+                 [(ngModel)]="hero.esquive"
+                 placeholder="Esquive" />
+        </div>
+      </div>
+      <div class="row form-group">
+        <div class="col-lg-4 text-right">
+          <label for="degats">Dégats: </label>
+        </div>
+        <div class="col-lg-6">
+          <input id="degats" class="form-control valid"
+                 [ngClass]="degatsClasses"
+                 type="number" [(ngModel)]="hero.degats"
+                 placeholder="Dégats" />
+        </div>
+      </div>
+      <div class="row form-group">
+        <div class="col-lg-4 text-right">
+          <label for="pv">Points de vie: </label>
+        </div>
+        <div class="col-lg-6">
+          <input id="pv" class="form-control valid"
+                 type="number"
+                 [ngClass]="pvClasses"
+                 [(ngModel)]="hero.pv"
+                 placeholder="Points de vie" />
+        </div>
+      </div>
+      <div class="row form-group">
+        <div class="col-lg-4 text-right">
+          <label>Armes</label>
+        </div>
+        <div class="col-lg-6">
+          <select class="form-control" name="armes" id="armes" [(ngModel)]="hero.armes" multiple>
+            <option *ngFor="let weapon of weapons" [value]="weapon.id">{{weapon.name}}</option>
+          </select>
+        </div>
+      </div>
+      <button class="btn btn-default" (click)="save()" [disabled]="!validForm">Sauvegarder</button>
+      <button class="btn btn-default" (click)="goBack()">Retour</button>
+    </div>
+    <div id="errorMessageHero" class="col-lg-offset-1 col-lg-5">
+      <div *ngIf="messageName">
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="form-group has-error">
+              <div class="help-block">
+                {{messageName}}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div *ngIf="messageAttaque">
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="form-group has-error">
+              <div class="help-block">
+                {{messageAttaque}}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div *ngIf="messageEsquive">
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="form-group has-error">
+              <div class="help-block">
+                {{messageEsquive}}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div *ngIf="messageDegats">
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="form-group has-error">
+              <div class="help-block">
+                {{messageDegats}}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div *ngIf="messagePv">
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="form-group has-error">
+              <div class="help-block">
+                {{messagePv}}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div *ngIf="messageTotal">
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="form-group has-error">
+              <div class="help-block">
+                {{messageTotal}}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

@@ -1,0 +1,74 @@
+<div class="row">
+  <div class="col-lg-offset-2 col-lg-8 jumbotron text-center">
+    <h3>Mes armes</h3>
+  </div>
+</div>
+<div class="row">
+  <div class="col-lg-offset-1 col-lg-3">
+    <ul class="list-group weapons">
+      <li class="list-group-item" *ngFor="let weapon of weapons" (click)="onSelect(weapon)"
+          [class.selected]="weapon === selectedWeapon">
+        <span *ngIf="sortWeaponIdActive" class="badge">{{weapon.id}}</span>
+        <span *ngIf="sortWeaponNameActive" class="badge">{{weapon.id}}</span>
+        <span *ngIf="sortWeaponBonusAttaqueActive" class="badge">{{weapon.bonusAttaque}}</span>
+        <span *ngIf="sortWeaponBonusEsquiveActive" class="badge">{{weapon.bonusEsquive}}</span>
+        <span *ngIf="sortWeaponBonusDegatsActive" class="badge">{{weapon.bonusDegats}}</span>
+        <span *ngIf="sortWeaponBonusPvActive" class="badge">{{weapon.bonusPv}}</span>
+        <span>{{weapon.name}}</span>
+        <button class="delete"
+                (click)="delete(weapon); $event.stopPropagation()">x</button>
+      </li>
+    </ul>
+  </div>
+  <div class="col-lg-7">
+    <div id="sortWeapons" class="row">
+      <div class="col-lg-8">
+        <legend>Tri des armes par critère</legend>
+        <button class="btn btn-default" [ngClass]="currentClassesSortIdButton" (click)="getWeaponsSortedById()">id</button>
+        <button class="btn btn-default" [ngClass]="currentClassesSortNameButton" (click)="getWeaponsSortedByName()">Nom</button>
+        <button class="btn btn-default" [ngClass]="currentClassesSortBonusAttaqueButton" (click)="getWeaponsSortedByBonusAttaque()">Attaque</button>
+        <button class="btn btn-default" [ngClass]="currentClassesSortBonusEsquiveButton" (click)="getWeaponsSortedByBonusEsquive()">Esquive</button>
+        <button class="btn btn-default" [ngClass]="currentClassesSortBonusDegatsButton" (click)="getWeaponsSortedByBonusDegats()">Degats</button>
+        <button class="btn btn-default" [ngClass]="currentClassesSortBonusPvButton" (click)="getWeaponsSortedByBonusPv()">Points de vie</button>
+      </div>
+    </div>
+    <div id="sortMessage" class="row">
+      <div *ngIf="sortWeaponIdActive ||
+                  sortWeaponNameActive ||
+                  sortWeaponBonusAttaqueActive ||
+                  sortWeaponBonusEsquiveActive ||
+                  sortWeaponBonusDegatsActive ||
+                  sortWeaponBonusPvActive" class="col-lg-8">
+        <div [ngClass]="classesSortMessage">
+          {{sortMessage}}
+        </div>
+      </div>
+    </div>
+    <div id="addWeaponForm" class="row">
+      <div class="col-lg-8">
+        <form>
+          <legend>Ajouter une arme</legend>
+          <div class="form-group">
+            <div class="col-lg-4">
+              <label>Nom de l'arme:</label>
+            </div>
+            <div class="col-lg-8">
+              <input class="form-control" #weaponName />
+            </div>
+          </div>
+          <button class="btn btn-default" (click)="add(weaponName.value); weaponName.value=''">
+            Ajouter
+          </button>
+        </form>
+      </div>
+    </div>
+    <div class="row">
+      <div *ngIf="selectedWeapon">
+        <h2>
+          {{selectedWeapon.name | uppercase}} est mon arme
+        </h2>
+        <button class="btn btn-default" (click)="gotoDetail()">Voir les Détails</button>
+      </div>
+    </div>
+  </div>
+</div>

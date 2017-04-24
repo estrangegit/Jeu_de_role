@@ -1,0 +1,14 @@
+<div id="search-component" class="row">
+  <form class="col-lg-offset-1 col-lg-7">
+    <legend>Rechercher un héro</legend>
+    <div class="form-group">
+      <input class="form-control" #searchBox id="search-box" (keyup)="search(searchBox.value)" />
+    </div>
+    <ul class="list-group">
+      <li class="list-group-item search-result" *ngFor="let hero of heroes | async"
+                (click)="gotoDetail(hero)">
+        {{hero.name}}
+      </li>
+    </ul>
+  </form>
+</div>
